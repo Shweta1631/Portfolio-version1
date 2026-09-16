@@ -13,6 +13,8 @@ import { Footer } from './components/Footer';
 import { ProjectSpecModal } from './components/ProjectSpecModal';
 import { CertificateModal } from './components/CertificateModal';
 import { ResumeModal } from './components/ResumeModal';
+import { CustomCursor } from './components/CustomCursor';
+import { RevealSection } from './components/SectionObserver';
 import { ProjectSpec, CertificateItem, ContactSubmission } from './types';
 
 export default function App() {
@@ -42,7 +44,8 @@ export default function App() {
       for (const id of sectionIds) {
         const element = document.getElementById(id);
         if (element) {
-          const top = element.offsetTop;
+          const rect = element.getBoundingClientRect();
+          const top = rect.top + window.scrollY;
           const height = element.offsetHeight;
           if (scrollPosition >= top && scrollPosition < top + height) {
             setActiveSection(id);
@@ -70,6 +73,9 @@ export default function App() {
 
   return (
     <div className="min-h-screen bg-[#0b1326] text-[#dae2fd] font-sans antialiased flex flex-col selection:bg-[#6366f1] selection:text-white">
+      {/* Unique Interactive Custom Cursor with flowing particles, magnetic pull, and click ripples */}
+      <CustomCursor />
+
       {/* Top sticky navigation bar */}
       <Navbar activeSection={activeSection} onNavigate={handleNavigate} />
 
@@ -83,28 +89,44 @@ export default function App() {
         />
 
         {/* 01 // IDENTITY & PHILOSOPHY */}
-        <AboutSection />
+        <RevealSection id="about">
+          <AboutSection />
+        </RevealSection>
 
         {/* 02 // FORMAL EDUCATION */}
-        <EducationSection />
+        <RevealSection id="academics">
+          <EducationSection />
+        </RevealSection>
 
         {/* 03 // ENGINEERING CAPSTONES */}
-        <ProjectsSection onInspectSpec={(proj) => setSelectedProject(proj)} />
+        <RevealSection id="projects">
+          <ProjectsSection onInspectSpec={(proj) => setSelectedProject(proj)} />
+        </RevealSection>
 
         {/* 04 // COMPETITIVE MERIT */}
-        <AchievementsSection />
+        <RevealSection id="achievements">
+          <AchievementsSection />
+        </RevealSection>
 
         {/* 05 // TECHNICAL MATRIX */}
-        <SkillsSection />
+        <RevealSection id="skills">
+          <SkillsSection />
+        </RevealSection>
 
         {/* 06 // INDUSTRIAL EXPERIENCE */}
-        <ExperienceSection />
+        <RevealSection id="internships">
+          <ExperienceSection />
+        </RevealSection>
 
         {/* 07 // INDUSTRY CREDENTIALS */}
-        <CertificationsSection onViewCertificate={(cert) => setSelectedCertificate(cert)} />
+        <RevealSection id="certifications">
+          <CertificationsSection onViewCertificate={(cert) => setSelectedCertificate(cert)} />
+        </RevealSection>
 
         {/* 08 // CONNECT */}
-        <ContactSection onMessageSent={handleMessageSent} />
+        <RevealSection id="contact">
+          <ContactSection onMessageSent={handleMessageSent} />
+        </RevealSection>
       </main>
 
       {/* Footer */}

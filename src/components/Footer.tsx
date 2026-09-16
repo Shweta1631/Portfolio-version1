@@ -31,9 +31,9 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
         <div className="flex flex-wrap items-center gap-5 text-[#94a3b8]">
           <button
             onClick={() => onNavigate('contact')}
-            className="hover:text-white flex items-center space-x-1.5 transition-colors cursor-pointer"
+            className="hover:text-white flex items-center space-x-1.5 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer group"
           >
-            <Mail className="w-3.5 h-3.5 text-[#89ceff]" />
+            <Mail className="w-3.5 h-3.5 text-[#89ceff] group-hover:scale-110 transition-transform" />
             <span>Contact</span>
           </button>
 
@@ -41,27 +41,27 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
             href={PERSONAL_INFO.githubUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="hover:text-white flex items-center space-x-1.5 transition-colors"
+            className="hover:text-white flex items-center space-x-1.5 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer group"
           >
-            <Github className="w-3.5 h-3.5 text-[#dae2fd]" />
+            <Github className="w-3.5 h-3.5 text-[#dae2fd] group-hover:scale-110 transition-transform" />
             <span>GitHub</span>
           </a>
 
           <button
             onClick={() => onNavigate('academics')}
-            className="hover:text-white flex items-center space-x-1.5 transition-colors cursor-pointer"
+            className="hover:text-white flex items-center space-x-1.5 transition-all duration-200 hover:-translate-y-0.5 cursor-pointer group"
           >
-            <GraduationCap className="w-3.5 h-3.5 text-[#4edea3]" />
+            <GraduationCap className="w-3.5 h-3.5 text-[#4edea3] group-hover:scale-110 transition-transform" />
             <span>Academics</span>
           </button>
 
           <button
             onClick={scrollToTop}
             id="scroll-to-top-btn"
-            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-sm bg-[#131b2e] border border-[#222a3d] text-white hover:border-[#6366f1] transition-all cursor-pointer"
+            className="inline-flex items-center space-x-1.5 px-3 py-1.5 rounded-sm bg-[#131b2e] border border-[#222a3d] text-white hover:border-[#6366f1] hover:bg-[#1a233a] hover:-translate-y-0.5 active:translate-y-0 transition-all duration-200 cursor-pointer shadow-sm group"
           >
             <span>Top</span>
-            <ArrowUp className="w-3.5 h-3.5 text-[#c0c1ff]" />
+            <ArrowUp className="w-3.5 h-3.5 text-[#c0c1ff] group-hover:-translate-y-0.5 transition-transform" />
           </button>
         </div>
       </div>

@@ -1,13 +1,20 @@
 import React from 'react';
+import { motion } from 'motion/react';
 import { Calendar, CheckCircle2, Briefcase } from 'lucide-react';
 import { INTERNSHIP_DATA } from '../data/portfolioData';
 
 export const ExperienceSection: React.FC = () => {
   return (
-    <section id="internships" className="py-16 border-b border-[#1a233a]">
+    <section id="internships" className="py-16 border-b border-[#1a233a] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col sm:flex-row sm:items-end justify-between pb-8 border-b border-[#1a233a] gap-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col sm:flex-row sm:items-end justify-between pb-8 border-b border-[#1a233a] gap-3"
+        >
           <div>
             <div className="text-xs font-mono text-[#89ceff] tracking-wider uppercase">
               06 // INDUSTRIAL EXPERIENCE
@@ -19,17 +26,21 @@ export const ExperienceSection: React.FC = () => {
           <div className="text-xs font-mono text-[#94a3b8]">
             Workplace Verification • {INTERNSHIP_DATA.company}
           </div>
-        </div>
+        </motion.div>
 
         {/* Experience Card */}
         <div className="mt-10">
-          <div
+          <motion.div
             id="internship-card"
-            className="rounded-lg bg-[#131b2e] border border-[#222a3d] p-6 sm:p-8 hover:border-[#334155] transition-all"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="rounded-lg bg-[#131b2e] border border-[#222a3d] p-6 sm:p-8 hover:border-[#6366f1]/40 hover:-translate-y-1 hover:shadow-[0_14px_35px_rgba(0,0,0,0.38)] transition-all duration-300 group"
           >
             {/* Top row */}
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-5 border-b border-[#1a233a]">
-              <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-sm bg-[#171f33] border border-[#2d3449] text-xs font-mono text-[#4edea3] w-fit">
+              <div className="inline-flex items-center space-x-2 px-2.5 py-1 rounded-sm bg-[#171f33] border border-[#2d3449] group-hover:border-[#4edea3]/40 text-xs font-mono text-[#4edea3] w-fit transition-colors">
                 <Briefcase className="w-3.5 h-3.5" />
                 <span>{INTERNSHIP_DATA.status}</span>
               </div>
@@ -41,7 +52,7 @@ export const ExperienceSection: React.FC = () => {
 
             {/* Position details */}
             <div className="mt-5">
-              <h3 className="text-xl sm:text-2xl font-bold text-white">
+              <h3 className="text-xl sm:text-2xl font-bold text-white group-hover:text-[#dae2fd] transition-colors">
                 {INTERNSHIP_DATA.role}
               </h3>
               <div className="text-sm font-mono text-[#c0c1ff] mt-1">
@@ -63,7 +74,7 @@ export const ExperienceSection: React.FC = () => {
                 ))}
               </ul>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>

@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { motion } from 'motion/react';
 import {
   Mail,
   Phone,
@@ -83,10 +84,16 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
   };
 
   return (
-    <section id="contact" className="py-16 border-b border-[#1a233a]">
+    <section id="contact" className="py-16 border-b border-[#1a233a] overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-[#1a233a] gap-3">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: '-60px' }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="flex flex-col md:flex-row md:items-end justify-between pb-8 border-b border-[#1a233a] gap-3"
+        >
           <div>
             <div className="text-xs font-mono text-[#89ceff] tracking-wider uppercase">
               08 // CONNECT
@@ -98,12 +105,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
           <div className="text-xs font-mono text-[#94a3b8] max-w-lg md:text-right">
             Submissions are validated in real-time, simulated across PHP/MySQL, and immediately recorded in the evaluation admin dashboard below.
           </div>
-        </div>
+        </motion.div>
 
         {/* Contact Layout */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mt-10">
           {/* Left Column: Contact Information */}
-          <div className="lg:col-span-5 flex flex-col justify-between">
+          <motion.div
+            initial={{ opacity: 0, x: -20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="lg:col-span-5 flex flex-col justify-between"
+          >
             <div>
               <h3 className="text-lg font-bold text-white">Contact Information</h3>
               <p className="text-xs sm:text-sm text-[#94a3b8] mt-2 leading-relaxed">
@@ -114,8 +127,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
               {/* Info Items */}
               <div className="space-y-4 mt-6">
                 {/* Email */}
-                <div className="flex items-center space-x-3.5 p-3.5 rounded-md bg-[#131b2e] border border-[#222a3d]">
-                  <div className="w-8 h-8 rounded-md bg-[#171f33] border border-[#2d3449] flex items-center justify-center text-[#89ceff] shrink-0">
+                <div className="flex items-center space-x-3.5 p-3.5 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#89ceff]/40 hover:-translate-y-0.5 transition-all duration-200 group">
+                  <div className="w-8 h-8 rounded-md bg-[#171f33] border border-[#2d3449] group-hover:border-[#89ceff]/50 group-hover:scale-105 flex items-center justify-center text-[#89ceff] shrink-0 transition-all duration-200">
                     <Mail className="w-4 h-4" />
                   </div>
                   <div>
@@ -132,8 +145,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                 </div>
 
                 {/* Phone */}
-                <div className="flex items-center space-x-3.5 p-3.5 rounded-md bg-[#131b2e] border border-[#222a3d]">
-                  <div className="w-8 h-8 rounded-md bg-[#171f33] border border-[#2d3449] flex items-center justify-center text-[#4edea3] shrink-0">
+                <div className="flex items-center space-x-3.5 p-3.5 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#4edea3]/40 hover:-translate-y-0.5 transition-all duration-200 group">
+                  <div className="w-8 h-8 rounded-md bg-[#171f33] border border-[#2d3449] group-hover:border-[#4edea3]/50 group-hover:scale-105 flex items-center justify-center text-[#4edea3] shrink-0 transition-all duration-200">
                     <Phone className="w-4 h-4" />
                   </div>
                   <div>
@@ -150,8 +163,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                 </div>
 
                 {/* Location */}
-                <div className="flex items-center space-x-3.5 p-3.5 rounded-md bg-[#131b2e] border border-[#222a3d]">
-                  <div className="w-8 h-8 rounded-md bg-[#171f33] border border-[#2d3449] flex items-center justify-center text-[#c0c1ff] shrink-0">
+                <div className="flex items-center space-x-3.5 p-3.5 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#c0c1ff]/40 hover:-translate-y-0.5 transition-all duration-200 group">
+                  <div className="w-8 h-8 rounded-md bg-[#171f33] border border-[#2d3449] group-hover:border-[#c0c1ff]/50 group-hover:scale-105 flex items-center justify-center text-[#c0c1ff] shrink-0 transition-all duration-200">
                     <MapPin className="w-4 h-4" />
                   </div>
                   <div>
@@ -176,10 +189,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                   href={PERSONAL_INFO.linkedinUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#334155] text-xs font-mono text-[#dae2fd] hover:text-white transition-all group"
+                  className="flex items-center justify-between p-3 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#89ceff]/50 hover:-translate-y-0.5 text-xs font-mono text-[#dae2fd] hover:text-white transition-all duration-200 group"
                 >
                   <div className="flex items-center space-x-2.5">
-                    <Linkedin className="w-4 h-4 text-[#89ceff]" />
+                    <Linkedin className="w-4 h-4 text-[#89ceff] group-hover:scale-110 transition-transform" />
                     <span>LinkedIn Profile</span>
                   </div>
                   <span className="text-[#94a3b8] group-hover:text-white transition-colors">
@@ -191,10 +204,10 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                   href={PERSONAL_INFO.githubUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-between p-3 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#334155] text-xs font-mono text-[#dae2fd] hover:text-white transition-all group"
+                  className="flex items-center justify-between p-3 rounded-md bg-[#131b2e] border border-[#222a3d] hover:border-[#c0c1ff]/50 hover:-translate-y-0.5 text-xs font-mono text-[#dae2fd] hover:text-white transition-all duration-200 group"
                 >
                   <div className="flex items-center space-x-2.5">
-                    <Github className="w-4 h-4 text-[#dae2fd]" />
+                    <Github className="w-4 h-4 text-[#dae2fd] group-hover:scale-110 transition-transform" />
                     <span>GitHub Repository</span>
                   </div>
                   <span className="text-[#94a3b8] group-hover:text-white transition-colors">
@@ -203,11 +216,17 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                 </a>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Right Column: Send Direct Message Form */}
-          <div className="lg:col-span-7">
-            <div className="rounded-lg bg-[#131b2e] border border-[#222a3d] p-6 sm:p-7 shadow-sm">
+          <motion.div
+            initial={{ opacity: 0, x: 20 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true, margin: '-40px' }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="lg:col-span-7"
+          >
+            <div className="rounded-lg bg-[#131b2e] border border-[#222a3d] p-6 sm:p-7 shadow-sm hover:border-[#334155] transition-all duration-300">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-5 border-b border-[#1a233a] gap-2">
                 <div>
                   <h3 className="text-base sm:text-lg font-bold text-white">
@@ -236,7 +255,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                       onChange={handleChange}
                       placeholder="e.g., Dr. R. Sundar / Priya K"
                       required
-                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] transition-colors"
+                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1]/40 transition-all duration-200"
                     />
                   </div>
 
@@ -252,7 +271,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                       onChange={handleChange}
                       placeholder="e.g., examiner@kamarajengg.edu.in"
                       required
-                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] transition-colors"
+                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1]/40 transition-all duration-200"
                     />
                   </div>
                 </div>
@@ -269,7 +288,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                       value={formData.phone}
                       onChange={handleChange}
                       placeholder="e.g., 9876543210"
-                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] transition-colors"
+                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1]/40 transition-all duration-200"
                     />
                   </div>
 
@@ -284,7 +303,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                       value={formData.subject}
                       onChange={handleChange}
                       placeholder="e.g., Viva Evaluation / Project Discussion"
-                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] transition-colors"
+                      className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1]/40 transition-all duration-200"
                     />
                   </div>
                 </div>
@@ -301,13 +320,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                     onChange={handleChange}
                     placeholder="Write your message, feedback, or interview schedule here..."
                     required
-                    className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] transition-colors resize-none"
+                    className="w-full px-3.5 py-2.5 text-xs font-mono rounded-md bg-[#171f33] border border-[#2d3449] text-white placeholder-[#464554] focus:outline-none focus:border-[#6366f1] focus:ring-1 focus:ring-[#6366f1]/40 transition-all duration-200 resize-none"
                   ></textarea>
                 </div>
 
                 {/* Status banner */}
                 {status === 'error' && (
-                  <div className="flex items-center space-x-2 text-xs font-mono text-[#ffb4ab] bg-[#93000a]/20 border border-[#ffb4ab]/30 p-2.5 rounded-sm">
+                  <div className="flex items-center space-x-2 text-xs font-mono text-[#ffb4ab] bg-[#93000a]/20 border border-[#ffb4ab]/30 p-2.5 rounded-sm animate-shake">
                     <AlertCircle className="w-4 h-4 shrink-0" />
                     <span>{statusMessage}</span>
                   </div>
@@ -329,7 +348,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                     id="contact-submit-btn"
                     type="submit"
                     disabled={status === 'loading'}
-                    className="inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-md bg-[#6366f1] hover:bg-[#4f46e5] text-white text-xs font-mono font-medium transition-all shadow-sm disabled:opacity-50 cursor-pointer"
+                    className="group inline-flex items-center justify-center space-x-2 px-5 py-2.5 rounded-md bg-[#6366f1] hover:bg-[#4f46e5] text-white text-xs font-mono font-medium transition-all duration-200 shadow-sm hover:shadow-[0_0_20px_rgba(99,102,241,0.35)] hover:-translate-y-0.5 active:translate-y-0 active:scale-98 disabled:opacity-50 cursor-pointer"
                   >
                     {status === 'loading' ? (
                       <>
@@ -338,7 +357,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                       </>
                     ) : (
                       <>
-                        <Send className="w-3.5 h-3.5" />
+                        <Send className="w-3.5 h-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
                         <span>Send Message</span>
                       </>
                     )}
@@ -346,7 +365,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onMessageSent })
                 </div>
               </form>
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
